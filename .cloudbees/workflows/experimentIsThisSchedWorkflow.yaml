@@ -13,9 +13,9 @@ on:
       param2:
         type: string
         default: bar
-   schedule:
-     - cron:  '*/6 * * * *'
-     - cron:  '*/10 * * * *'
+  schedule:
+    - cron:  '*/6 * * * *'
+    - cron:  10 * * * *
      
 jobs:
   build:
