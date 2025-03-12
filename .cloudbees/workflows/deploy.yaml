@@ -21,7 +21,7 @@ jobs:
         with:
           name: "art1-fe"
           version: "${{ fromJSON(inputs.manifest).art1-fe.version }}"
-          url: "docker.io/MyApp/art1-fe:${{ fromJSON(inputs.manifest).art1-fe.version }}"
+          url: "${{ fromJSON(inputs.manifest).art1-fe.url }}"
           target-environment: "${{ inputs.environment }}"
       - name: Deploy art1-be
         if: ${{ fromJSON(inputs.manifest).art1-be.deploy }}
@@ -29,5 +29,5 @@ jobs:
         with:
           name: "art1-be"
           version: "${{ fromJSON(inputs.manifest).art1-be.version }}"
-          url: "docker.io/MyApp/art1-be:${{ fromJSON(inputs.manifest).art1-be.version }}"
+          url: "${{ fromJSON(inputs.manifest).art1-fe.url }}"
           target-environment: "${{ inputs.environment }}"
