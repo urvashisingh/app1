@@ -6,11 +6,26 @@ on:
     branches:
       - "**"
 jobs:
-  build:
+  run-without-env:
     steps:
-      - uses: docker://golang:1.20.3-alpine3.17
-        name: Say hello
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          echo "hello world"
-      - uses: us-config-action
+          echo "hello world. Prop3 value: ${{ vars.prop3 }}"
+  run-on-us-env:
+    environment: us-env
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "hello world. Prop3 value: ${{ vars.prop3 }}"
+  run-on-us-env2:
+    environment: us-env2
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "hello world. Prop3 value: ${{ vars.prop3 }}"
