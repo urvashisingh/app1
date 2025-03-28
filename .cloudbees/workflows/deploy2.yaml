@@ -17,10 +17,10 @@ jobs:
           name: "art1-fe"
           version: "${{ inputs.version }}"
           url: "docker.io/MyApp/art1-fe:${{ inputs.version }}"
-          environment: "envt${{ inputs.version }}"
+          target-environment: "envt${{ inputs.version }}"
       - uses: cloudbees-io/register-deployed-artifact@v1
         with:
           name: "art1-be"
           version: "${{ inputs.version }}"
           url: "docker.io/MyApp/art1-be:${{ inputs.version }}"
-          environment: "envt${{ inputs.version }}"
+          target-environment: "envt${{ inputs.version }}"
