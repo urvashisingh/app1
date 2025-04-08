@@ -20,8 +20,9 @@ jobs:
       - name: Call API
         uses: https://github.com/urvashisingh/try-api-action
         with:
-          http-method: get
-          uri: /reserved/v1/resources/e3ebadbf-995d-4733-91f4-7953bedc73c9/workflow-properties
+          http-method: post
+          uri: v2/workflows/runs/artifactinfos
+          payload: '{ "runId": "${{ cloudbees.run_id }}", "runAttempt": "${{ cloudbees.run_attempt }}", "name": "art1", "url": "art1-url", "version": "1.0"}'
   publish:
     steps:
       - uses: cloudbees-io/publish-evidence-item
