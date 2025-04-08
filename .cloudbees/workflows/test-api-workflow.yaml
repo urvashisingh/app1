@@ -21,7 +21,7 @@ jobs:
         uses: https://github.com/urvashisingh/try-api-action
         with:
           http-method: post
-          uri: v2/workflows/runs/artifactinfos
+          uri: /v2/workflows/runs/artifactinfos
           payload: '{ "runId": "${{ cloudbees.run_id }}", "runAttempt": "${{ cloudbees.run_attempt }}", "name": "art1", "url": "art1-url", "version": "1.0"}'
   publish:
     steps:
