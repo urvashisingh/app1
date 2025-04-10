@@ -1,0 +1,23 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: My workflow
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    steps:
+      - uses: cloudbees-io/register-build-artifact@v1
+        with:
+          name: "art1"
+          version: "${{ cloudbees.version }}"
+          url: "art1::${{ cloudbees.version }}"
+      - uses: cloudbees-io/register-deployed-artifact@v1
+        with:
+          name: "art1"
+          version: "${{ cloudbees.version }}"
+          url: "art1::${{ cloudbees.version }}"
+          target-environment: "test"    
