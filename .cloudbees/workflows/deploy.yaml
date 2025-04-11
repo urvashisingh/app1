@@ -8,9 +8,11 @@ on:
       manifest:
         type: string
         required: true
+        default: str
       environment:
          type: string
          required: true  
+         default: str2
 
 jobs:
   deploy-app1:
