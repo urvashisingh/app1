@@ -27,10 +27,10 @@ jobs:
     steps:
       - name: Deploy art1-fe
         if: ${{ fromJSON(inputs.manifest).art1.deploy }}
-        uses: docker://golang:1.20.3-alpine3.17
-        shell: sh
-        run: |
-          echo "art3 version: ${{ fromJSON(inputs.manifest).art1.version }}"
-          echo "url: ${{ fromJSON(inputs.manifest).art1.url }}"
-          echo "env: ${{ inputs.environment }}"
+        uses: cloudbees-io/register-deployed-artifact@v1
+        with:
+          name: "art1"
+          version: "${{ fromJSON(inputs.manifest).art1.version }}"
+          url: "${{ fromJSON(inputs.manifest).art1.url }}"
+          target-environment: "${{ inputs.environment }}"
 
