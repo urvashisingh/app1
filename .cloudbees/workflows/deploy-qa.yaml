@@ -26,19 +26,11 @@ jobs:
   deploy-app1:
     steps:
       - name: Deploy art1-fe
-        if: ${{ fromJSON(inputs.manifest).art1-fe.deploy }}
+        if: ${{ fromJSON(inputs.manifest).art1.deploy }}
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          echo "art3 version: ${{ fromJSON(inputs.manifest).art1-fe.version }}"
-          echo "url: ${{ fromJSON(inputs.manifest).art1-fe.url }}"
+          echo "art3 version: ${{ fromJSON(inputs.manifest).art1.version }}"
+          echo "url: ${{ fromJSON(inputs.manifest).art1.url }}"
           echo "env: ${{ inputs.environment }}"
 
-      - name: Deploy art1-be
-        if: ${{ fromJSON(inputs.manifest).art1-be.deploy }}
-        uses: docker://golang:1.20.3-alpine3.17
-        shell: sh
-        run: |
-          echo "art3 version: ${{ fromJSON(inputs.manifest).art1-be.version }}"
-          echo "url: ${{ fromJSON(inputs.manifest).art1-be.url }}"
-          echo "env: ${{ inputs.environment }}"
