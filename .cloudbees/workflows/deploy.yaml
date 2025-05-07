@@ -3,16 +3,6 @@ kind: workflow
 name: My workflow
 
 on:
-  workflow_dispatch:
-    inputs:
-      manifest:
-        type: string
-        required: true
-        default: str
-      environment:
-         type: string
-         required: true  
-         default: str2
   workflow_call:
     inputs:
       manifest:
