@@ -24,10 +24,5 @@ jobs:
           name: ${{ inputs.name }}
           version: ${{ inputs.version }}
           url: ${{ inputs.url }}
-      - uses: cloudbees-io/register-build-artifact@v1
-        with:
-          name: ${{ inputs.name }}-with-digest
-          version: ${{ inputs.version }}
-          url: ${{ inputs.url }}-with-digest
           digest: ${{inputs.digest}}
  
