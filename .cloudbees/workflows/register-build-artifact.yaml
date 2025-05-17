@@ -1,0 +1,29 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: register build artifact
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        type: string
+        required: true
+      version:
+        type: string
+        required: true 
+      url:
+        type: string
+        required: true   
+jobs:
+  reg_artifact:
+    steps:
+      - uses: cloudbees-io/register-build-artifact@v1
+        with:
+          name: ${{ inputs.name }}
+          version: ${{ inputs.version }}
+          url: ${{ inputs.url }}
+      - uses: cloudbees-io/register-build-artifact@v1
+        with:
+          name: ${{ inputs.name }}-with-digest
+          version: ${{ inputs.version }}
+          url: ${{ inputs.url }}-with-digest
+ 
