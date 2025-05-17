@@ -12,6 +12,9 @@ on:
         required: true 
       url:
         type: string
+        required: true 
+      digest:
+        type: string
         required: true   
 jobs:
   reg_artifact:
@@ -26,4 +29,5 @@ jobs:
           name: ${{ inputs.name }}-with-digest
           version: ${{ inputs.version }}
           url: ${{ inputs.url }}-with-digest
+          digest: ${{inputs.digest}}
  
