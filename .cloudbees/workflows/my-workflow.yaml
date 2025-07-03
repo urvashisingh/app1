@@ -13,6 +13,7 @@ jobs:
         id: checkout
       - name: Register an artifact with the platform
         uses: cloudbees-io/register-build-artifact@v1
+        id: register
         with:
           name: "myApp"
           url: "docker.io/myapp/myimg:1.0.0"
@@ -21,5 +22,5 @@ jobs:
         uses: docker://alpine:latest
         shell: sh
         run: |
-          echo "artifact ID for myApp:${{ cloudbees.version }} is: ${{ steps.outputs.artifact-id }}"
+          echo "artifact ID for myApp:${{ cloudbees.version }} is: ${{ steps.register.outputs.artifact-id }}"
           
