@@ -19,13 +19,11 @@ jobs:
         if: ${{ fromJSON(inputs.manifest).art1-fe.deploy }}
         uses: cloudbees-io/register-deployed-artifact@v2
         with:
-          name: "art1-fe"
           artifact_id: "${{ fromJSON(inputs.manifest).art1-fe.artifact_id }}"
           target-environment: "${{ inputs.environment }}"
       - name: Deploy art1-be
         if: ${{ fromJSON(inputs.manifest).art1-be.deploy }}
         uses: cloudbees-io/register-deployed-artifact@v2
         with:
-          name: "art1-be"
           artifact_id: "${{ fromJSON(inputs.manifest).art1-be.artifact_id }}"
           target-environment: "${{ inputs.environment }}"
