@@ -4,6 +4,10 @@ name: My workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      art-id:
+        type: string
+        default: f65fc73e-c2e7-4153-9337-0046be60510b 
 
 
 jobs:
@@ -12,3 +16,6 @@ jobs:
       - uses: cloudbees-io/get-artifact-details@v1
         with:
           artifact-id: f65fc73e-c2e7-4153-9337-0046be60510b  
+      - uses: cloudbees-io/get-artifact-details@v1
+        with:
+          artifact-id: ${{ inputs.art-id }}           
