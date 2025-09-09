@@ -12,15 +12,11 @@ on:
 jobs:
   build-art1:
     steps:
-      - uses: cloudbees-io/register-deployed-artifact@v1
+      - uses: cloudbees-io/register-deployed-artifact@v2
         with:
-          name: "art1-fe"
-          version: "${{ inputs.version }}"
-          url: "docker.io/MyApp/art1-fe:${{ inputs.version }}"
+          artifact-id: "f65fc73e-c2e7-4153-9337-0046be60510b"
           target-environment: "envt${{ inputs.version }}"
-      - uses: cloudbees-io/register-deployed-artifact@v1
+      - uses: cloudbees-io/register-deployed-artifact@v2
         with:
-          name: "art1-be"
-          version: "${{ inputs.version }}"
-          url: "docker.io/MyApp/art1-be:${{ inputs.version }}"
+          artifact-id: "6245fae7-065c-4fdc-b0bb-bdaac5f59a39"
           target-environment: "envt${{ inputs.version }}"
