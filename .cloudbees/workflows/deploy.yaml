@@ -12,6 +12,15 @@ on:
          type: string
          required: true  
 
+  workflow_dispatch:
+    inputs:
+      manifest:
+        type: string
+        required: true
+      environment:
+         type: string
+         required: true  
+
 jobs:
   deploy-app1:
     steps:
