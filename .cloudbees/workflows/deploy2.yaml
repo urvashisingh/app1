@@ -4,15 +4,21 @@ name: My workflow
 
 on:
   workflow_dispatch:
-
+    inputs:
+      environment:
+        type: string
+  workflow_call:
+    inputs:
+      environment:
+        type: string
 jobs:
   build-art1:
     steps:
       - uses: cloudbees-io/register-deployed-artifact@v2
         with:
           artifact-id: "f65fc73e-c2e7-4153-9337-0046be60510b"
-          target-environment: "dev"
+          target-environment: ${{ inputs.environment }}
       - uses: cloudbees-io/register-deployed-artifact@v2
         with:
           artifact-id: "6245fae7-065c-4fdc-b0bb-bdaac5f59a39"
-          target-environment: "dev"
+          target-environment: ${{ inputs.environment }}
