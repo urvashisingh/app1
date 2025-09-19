@@ -1,29 +1,42 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: My workflow
-
 on:
   workflow_call:
     inputs:
-      manifest:
+      artifact-id:
         type: string
         required: true
       environment:
-         type: string
-         required: true  
-
+        type: string
+        required: true
+  workflow_dispatch:
+    inputs:
+      artifact-id:
+        type: string
+        required: true
+        default: "7db6f691-d1fa-4beb-9466-9627075d2a29"
+      environment:
+        type: string
+        required: true
+        default: dev
 jobs:
-  deploy-app1:
+  Deploy:
+    environment: ${{ inputs.environment }}
     steps:
-      - name: Deploy art1-fe
-        if: ${{ fromJSON(inputs.manifest).art1-fe.deploy }}
+      - name: Get artifact details
+        id: get-artifact-details
+        uses: cloudbees-io/get-artifact-details@v1
+        with: 
+          artifact-id: ${{ inputs.artifact-id }}
+      - name: Deploy artifact
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "Deploying ${{ steps.get-artifact-details.outputs.name }}:${{ steps.get-artifact-details.outputs.version }} from ${{ steps.get-artifact-details.outputs.url }} to ${{ job.environment }}" 
+      - name: Register deployment
         uses: cloudbees-io/register-deployed-artifact@v2
         with:
-          artifact-id: "${{ fromJSON(inputs.manifest).art1-fe.id }}"
-          target-environment: "${{ inputs.environment }}"
-      - name: Deploy art1-be
-        if: ${{ fromJSON(inputs.manifest).art1-be.deploy }}
-        uses: cloudbees-io/register-deployed-artifact@v2
-        with:
-          artifact-id: "${{ fromJSON(inputs.manifest).art1-be.id }}"
-          target-environment: "${{ inputs.environment }}"
+          artifact-id: ${{ inputs.artifact-id }}
+        
+        
