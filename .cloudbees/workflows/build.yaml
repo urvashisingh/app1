@@ -12,6 +12,10 @@ on:
       version:
         type: string
         required: true
+      component-id:
+        type: string
+        default: 96ea5680-ce12-48d6-a898-f9b7fd1f45d1
+        description: Component ID to regiser the artifact version in. Must be in the same org or a sub-org as this workflow  
 
 jobs:
   build-art1:
@@ -21,8 +25,10 @@ jobs:
           name: "art1-fe"
           version: "${{ inputs.version }}"
           url: "docker.io/MyApp/art1-fe:${{ inputs.version }}"
+          component-id: "${{ inputs.component-id }}"
       - uses: cloudbees-io/register-build-artifact@v2
         with:
           name: "art1-be"
           version: "${{ inputs.version }}"
           url: "docker.io/MyApp/art1-be:${{ inputs.version }}"
+          component-id: "${{ inputs.component-id }}"
